@@ -43,6 +43,8 @@ ppois(q=x,lambda=l)
 
 ##Miguel: I did it the same way. However, you have calculated the probability of hearing 1 call, 2 calls, 3 calls... till 8 calls, and we need to calculate the probability of hearing more than 8, so you could try doing "1 - ppois(q=x, lambda=l)" that means not hearing 1 call, nor 2... nor 8, which would mean the probability of hearing 8 or more. Anyway, DIEGO found a more efficient way to do it than our, but I let him explain it to you ;) 
 
+##Diego: As Miguel said, you have to calculate the probability of hearing more than 8 calls. You can do that the way Miguel did it or using this code: ppois(8, l, lower.tail = FALSE). The "lower.tail = FALSE" argument makes the function start from the opposite side so it gives you the probability of x being greater than 8 instead of lower than 8, which is the default for ppois.
+
 ```
 
 #Problem 2
@@ -53,6 +55,8 @@ dpois(x=0,lambda=l)
 # I set x=0 because this should represent the minimum
 
 ##Miguel: Nice!
+
+##Diego: Perfect!
 ```
 
 #Problem 3
@@ -63,6 +67,8 @@ dpois(x=3,lambda=l)
 # I used the same idea as in problem 2, by setting x=3 (the minimum). I am getting values, but I am just not confident this is correct.
 
 ##Miguel: I think this is perfect.
+
+##Diego: Perfect!
 ```
 
 #Problem 4
@@ -74,6 +80,8 @@ barplot(y,names.arg=x,space=0,xlab="Calls",ylab="Pr(x=Calls)",main="Probability 
 
 ##Miguel: I think this is good! You can set the colour of the bars by "col = colour" if you want to make it fancier :)
 
+##Diego: Perfect! Commenting Miguel's code I found out that you can write directly "barplot(dpois(x=x, lambda=l), .....)" so you don't have to set the variable y, and I think that is a faster way to write it, although what you did is totally correct.
+
 ```
 
 #Problem 5
@@ -82,6 +90,8 @@ barplot(y,names.arg=x,space=0,xlab="Calls",ylab="Pr(x=Calls)",main="Probability 
 rpois(r=104,lambda=l)
 
 ##Miguel: Nice
+
+##Diego: The code give me an error. It says: "Error in rpois(r = 104, lambda = l) : unused argument (r = 104)". I think the name of the argument is n instead of r, so it would be rpois(n=104,lambda=l)
 
 ```
 
@@ -93,9 +103,11 @@ r
  #  [1] 18 14 20 17 16 10 13 12 18 12 16 13 12 13  9 16 18 17 12 16 15 20 13 15 11 21 21 10 21 21 11 11 21 20 14 14
  # [37] 21 15 14 17 17 11 12  9 15 15 16 13 16 15 15 16 19 15  9 18  9  9 17 21 12 14 11 15 13 19 17 10 15 12 10 16
  # [73] 11 14 15 16 15 15 11 13 14  9 12 21 20 16 14 13 15 16 15 17 11 15 19  9 23 19 13  8 24 19 24 14
-> hist(x,breaks=seq(from=0,to=30,by=1),probability=TRUE,main="Plot of Simulated Results",xlab="Calls",ylab="Pr(x=Calls)",xlim=c(0,30))
+> hist(r,breaks=seq(from=0,to=30,by=1),probability=TRUE,main="Plot of Simulated Results",xlab="Calls",ylab="Pr(x=Calls)",xlim=c(0,30))
 
 ##Miguel: I think you are not calling the appropriate vector, because you wrote "hist(x...)" instead of "hist(r...)" that is the vector you set above with the 104 random values.
+
+##Diego: As Miguel said, you called x instead of r, which are your simulated data. There is also an extra ">" before the function hist which gives an error. The rest of the code is perfect! Good job!
 
 ```
 ```{r}
